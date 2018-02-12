@@ -4,27 +4,31 @@ using UnityEngine;
 
 public class menu : MonoBehaviour {
 
-	public int buttonWidth;
-	public int buttonHeight;
-	private int origin_x;
-	private int origin_y;
+	private int o_x;
+	private int o_y;
+	public int buttonW;
+	public int buttonH;
+
 
 	// Use this for initialization
 	void Start () {
-		buttonWidth = 300;
-		buttonHeight = 100;
-		origin_x = Screen.width / 2 - buttonWidth / 2;
-		origin_y = Screen.height / 2 - buttonHeight * 2;
+		buttonW = 200;
+		buttonH = 150;
+		o_x = Screen.width / 2 - buttonW / 2;
+		o_y = Screen.height / 2 - buttonH * 2;
 	}
 
 	void OnGUI() {
-		if(GUI.Button(new Rect(origin_x, origin_y, buttonWidth, buttonHeight), "Roll a ball")) {
+		var C1 = GUI.backgroundColor;
+    GUI.backgroundColor = Color.green;
+
+		if(GUI.Button(new Rect(o_x, o_y, buttonW + 5, buttonH), "Roll a ball")) {
 			Application.LoadLevel(1);
 		}
-		if(GUI.Button(new Rect(origin_x, origin_y + buttonHeight + 10, buttonWidth, buttonHeight), "Dont touch the cows")) {
+		if(GUI.Button(new Rect(o_x, o_y + buttonH + 10, buttonW, buttonH), "Dont touch the cows")) {
 			Application.LoadLevel(2);
 		}
-		if(GUI.Button(new Rect(origin_x, origin_y + buttonHeight * 2 + 20, buttonWidth, buttonHeight), "Exit")) {
+		if(GUI.Button(new Rect(o_x, o_y + buttonH * 2 + 20, buttonW, buttonH), "Exit")) {
 			#if UNITY_EDITOR
 				UnityEditor.EditorApplication.isPlaying = false;
 			#else
